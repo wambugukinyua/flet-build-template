@@ -317,20 +317,15 @@ class ErrorScreen extends StatelessWidget {
 }
 
 class BootScreen extends StatelessWidget {
-  const BootScreen({Key? key}) : super(key: key);
+  const BootScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [theme.primaryColorLight, theme.primaryColorDark],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+        color: Colors.white,
         child: SafeArea(
           child: Center(
             child: Card(
@@ -338,25 +333,29 @@ class BootScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              color: Colors.white.withOpacity(0.85),
+              color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       width: 50,
                       height: 50,
                       child: CircularProgressIndicator(
                         strokeWidth: 4,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.blueAccent),
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Colors.blueAccent),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                     Text(
                       appBootScreenMessage,
-                      style: theme.theme.textTheme.headlineMedium!
-                          .copyWith(color: Colors.black87),
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ],
