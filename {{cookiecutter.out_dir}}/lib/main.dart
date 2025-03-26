@@ -324,7 +324,6 @@ class BootScreen extends StatelessWidget {
     final theme = Theme.of(context);
     return Scaffold(
       body: Container(
-        // Gradient background for a modern feel
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [theme.primaryColorLight, theme.primaryColorDark],
@@ -335,19 +334,16 @@ class BootScreen extends StatelessWidget {
         child: SafeArea(
           child: Center(
             child: Card(
-              // Card to emphasize content with subtle elevation and rounded corners
               elevation: 8,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              // A slight opacity gives it a light, modern overlay
               color: Colors.white.withOpacity(0.85),
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Increased size and updated styling for the indicator
                     const SizedBox(
                       width: 50,
                       height: 50,
@@ -357,10 +353,10 @@ class BootScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    // Using a headline style for a more prominent message
                     Text(
                       appBootScreenMessage,
-                      style: theme.textTheme.headline6?.copyWith(color: Colors.black87),
+                      style: theme.theme.textTheme.headlineMedium!
+                          .copyWith(color: Colors.black87),
                       textAlign: TextAlign.center,
                     ),
                   ],
