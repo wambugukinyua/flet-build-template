@@ -317,27 +317,57 @@ class ErrorScreen extends StatelessWidget {
 }
 
 class BootScreen extends StatelessWidget {
-  const BootScreen({
-    super.key,
-  });
+  const BootScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(
-              width: 30,
-              height: 30,
-              child: CircularProgressIndicator(strokeWidth: 3),
+      body: Container(
+        // Gradient background for a modern feel
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [theme.primaryColorLight, theme.primaryColorDark],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: Card(
+              // Card to emphasize content with subtle elevation and rounded corners
+              elevation: 8,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              // A slight opacity gives it a light, modern overlay
+              color: Colors.white.withOpacity(0.85),
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Increased size and updated styling for the indicator
+                    const SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 4,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.blueAccent),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    // Using a headline style for a more prominent message
+                    Text(
+                      appBootScreenMessage,
+                      style: theme.textTheme.headline6?.copyWith(color: Colors.black87),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(appBootScreenMessage, style: Theme.of(context).textTheme.bodySmall,)
-          ],
+          ),
         ),
       ),
     );
